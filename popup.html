@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tab Manager</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🗂️ Tab Manager</h1>
+      <p class="subtitle">智能标签页管理器</p>
+    </header>
+
+    <main>
+      <div class="settings-section">
+        <div class="setting-item">
+          <label for="maxTabs">最大标签页数量：</label>
+          <div class="input-group">
+            <input type="number" id="maxTabs" min="1" max="100" value="10">
+            <span class="unit">个</span>
+          </div>
+        </div>
+
+        <div class="setting-item">
+          <label for="strategy">超出时的管理策略：</label>
+          <select id="strategy">
+            <option value="oldest">关闭最旧的标签页</option>
+            <option value="newest">关闭最新的标签页</option>
+            <option value="least_used">关闭最少使用的标签页</option>
+            <option value="duplicate">优先关闭重复的标签页</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="status-section">
+        <div class="status-item">
+          <span class="label">当前标签页数量：</span>
+          <span id="currentTabCount" class="value">-</span>
+        </div>
+        <div class="status-item">
+          <span class="label">状态：</span>
+          <span id="status" class="value status-normal">正常</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="saveBtn" class="btn btn-primary">保存设置</button>
+        <button id="manualCheckBtn" class="btn btn-secondary">立即检查</button>
+      </div>
+
+      <div class="info-section">
+        <h3>策略说明</h3>
+        <ul class="strategy-list">
+          <li><strong>最旧的标签页：</strong>按创建时间关闭最早打开的标签页</li>
+          <li><strong>最新的标签页：</strong>关闭最近打开的标签页</li>
+          <li><strong>最少使用：</strong>基于访问频率关闭使用最少的标签页</li>
+          <li><strong>重复标签页：</strong>优先关闭相同URL的重复标签页</li>
+        </ul>
+        <p class="note">注意：固定的标签页和当前活动标签页不会被关闭</p>
+      </div>
+    </main>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
